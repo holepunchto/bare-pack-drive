@@ -1,0 +1,32 @@
+{
+  "name": "bare-pack-drive",
+  "version": "1.0.0",
+  "description": "Pack drives to Bare bundles",
+  "exports": {
+    ".": "./index.js",
+    "./package": "./package.json"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "standard && bare test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holepunchto/bare-pack-drive.git"
+  },
+  "author": "Holepunch",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/holepunchto/bare-pack-drive/issues"
+  },
+  "homepage": "https://github.com/holepunchto/bare-pack-drive#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "bare-bundle": "^1.6.1",
+    "brittle": "^3.1.1",
+    "localdrive": "^1.12.0",
+    "standard": "^17.0.0"
+  }
+}
