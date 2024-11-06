@@ -29,7 +29,7 @@ test('package.json#assets', async (t) => {
   const bundle = await pack(new Localdrive('test/fixtures/package-json-assets'), '/foo.js')
 
   const expected = new Bundle()
-    .write('/foo.js', '\n', {
+    .write('/foo.js', 'module.exports = 42\n', {
       main: true,
       imports: {
         '#package': '/package.json'

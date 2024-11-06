@@ -10,7 +10,10 @@
     "index.js"
   ],
   "scripts": {
-    "test": "standard && bare test.js"
+    "test": "npm run lint && npm run test:bare && npm run test:node",
+    "test:bare": "bare test.js",
+    "test:node": "node test.js",
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
@@ -22,9 +25,14 @@
     "url": "https://github.com/holepunchto/bare-pack-drive/issues"
   },
   "homepage": "https://github.com/holepunchto/bare-pack-drive#readme",
-  "dependencies": {},
+  "dependencies": {
+    "bare-pack": "^1.0.1"
+  },
+  "peerDependencies": {
+    "bare-bundle": "^1.8.0"
+  },
   "devDependencies": {
-    "bare-bundle": "^1.7.0",
+    "bare-bundle": "*",
     "brittle": "^3.1.1",
     "localdrive": "^1.12.1",
     "standard": "^17.0.0"
