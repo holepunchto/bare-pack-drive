@@ -1,6 +1,11 @@
 const pack = require('bare-pack')
 
-module.exports = async function (drive, entry, opts = {}) {
+module.exports = async function (drive, entry = '/index.js', opts = {}) {
+  if (typeof entry === 'object' && entry !== null) {
+    opts = entry
+    entry = '/index.js'
+  }
+
   const root = new URL('drive:///')
 
   const bundle = await pack(new URL(entry, root), opts, readModule, listPrefix)
