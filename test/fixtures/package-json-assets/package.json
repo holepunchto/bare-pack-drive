@@ -1,1 +1,6 @@
-{ "name": "foo", "assets": ["bar/"] }
+{
+  "name": "foo",
+  "assets": [
+    "bar/"
+  ]
+}

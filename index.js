@@ -7,11 +7,11 @@ module.exports = async function (drive, entry, opts = {}) {
 
   return bundle.unmount(root)
 
-  async function readModule (url) {
+  async function readModule(url) {
     return drive.get(url.pathname)
   }
 
-  async function * listPrefix (url) {
+  async function* listPrefix(url) {
     if (url.pathname[url.pathname.length - 1] !== '/') url.pathname += '/'
 
     for await (const { key } of drive.list(url.pathname, { recursive: true })) {

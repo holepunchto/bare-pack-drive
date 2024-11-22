@@ -7,13 +7,13 @@ test('require', async (t) => {
   const bundle = await pack(new Localdrive('test/fixtures/require'), '/foo.js')
 
   const expected = new Bundle()
-    .write('/foo.js', 'require(\'./bar.js\')\n', {
+    .write('/foo.js', "require('./bar.js')\n", {
       main: true,
       imports: {
         './bar.js': '/bar.js'
       }
     })
-    .write('/bar.js', 'require(\'./baz.js\')\n', {
+    .write('/bar.js', "require('./baz.js')\n", {
       imports: {
         './baz.js': '/baz.js'
       }
@@ -26,7 +26,10 @@ test('require', async (t) => {
 })
 
 test('package.json#assets', async (t) => {
-  const bundle = await pack(new Localdrive('test/fixtures/package-json-assets'), '/foo.js')
+  const bundle = await pack(
+    new Localdrive('test/fixtures/package-json-assets'),
+    '/foo.js'
+  )
 
   const expected = new Bundle()
     .write('/foo.js', 'module.exports = 42\n', {
@@ -35,9 +38,13 @@ test('package.json#assets', async (t) => {
         '#package': '/package.json'
       }
     })
-    .write('/package.json', '{ "name": "foo", "assets": ["bar/"] }\n', {
-      imports: {}
-    })
+    .write(
+      '/package.json',
+      '{\n  "name": "foo",\n  "assets": [\n    "bar/"\n  ]\n}\n',
+      {
+        imports: {}
+      }
+    )
     .write('/bar/baz.txt', 'hello world\n', {
       asset: true,
       imports: {
