@@ -17,6 +17,10 @@ module.exports = async function (drive, entry = '/index.js', opts = {}) {
   }
 
   async function* listPrefix(url) {
+    const entry = await drive.get(url.pathname)
+
+    if (entry !== null) return yield url
+
     for await (const { key } of drive.list(url.pathname, { recursive: true })) {
       yield new URL(key, url)
     }

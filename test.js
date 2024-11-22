@@ -40,12 +40,18 @@ test('package.json#assets', async (t) => {
     })
     .write(
       '/package.json',
-      '{\n  "name": "foo",\n  "assets": [\n    "bar/"\n  ]\n}\n',
+      '{\n  "name": "foo",\n  "assets": [\n    "bar/",\n    "qux.txt"\n  ]\n}\n',
       {
         imports: {}
       }
     )
     .write('/bar/baz.txt', 'hello world\n', {
+      asset: true,
+      imports: {
+        '#package': '/package.json'
+      }
+    })
+    .write('/qux.txt', 'hello world\n', {
       asset: true,
       imports: {
         '#package': '/package.json'

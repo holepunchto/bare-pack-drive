@@ -1,6 +1,7 @@
 {
   "name": "foo",
   "assets": [
-    "bar/"
+    "bar/",
+    "qux.txt"
   ]
 }
