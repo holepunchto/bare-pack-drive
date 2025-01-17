@@ -25,6 +25,39 @@ test('require', async (t) => {
   t.alike(bundle, expected)
 })
 
+test('require.asset, directory', async (t) => {
+  const bundle = await pack(
+    new Localdrive('test/fixtures/directory-assets'),
+    '/foo.js'
+  )
+
+  const expected = new Bundle()
+    .write('/foo.js', "module.exports = require.asset('./bar')\n", {
+      main: true,
+      imports: {
+        '#package': '/package.json',
+        './bar': '/bar'
+      }
+    })
+    .write('/package.json', '{\n  "name": "foo"\n}\n', {
+      imports: {}
+    })
+    .write('/bar/baz.txt', 'hello world\n', {
+      asset: true,
+      imports: {
+        '#package': '/package.json'
+      }
+    })
+    .write('/bar/qux.txt', 'hello world\n', {
+      asset: true,
+      imports: {
+        '#package': '/package.json'
+      }
+    })
+
+  t.alike(bundle, expected)
+})
+
 test('package.json#assets', async (t) => {
   const bundle = await pack(
     new Localdrive('test/fixtures/package-json-assets'),

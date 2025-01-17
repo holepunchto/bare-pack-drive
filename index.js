@@ -21,6 +21,10 @@ module.exports = async function (drive, entry = '/index.js', opts = {}) {
 
     if (entry !== null) return yield url
 
+    if (url.pathname[url.pathname.length - 1] !== '/') {
+      url.pathname += '/'
+    }
+
     for await (const { key } of drive.list(url.pathname, { recursive: true })) {
       yield new URL(key, url)
     }
