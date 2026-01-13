@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/holepunchto/bare-pack-drive#readme",
   "dependencies": {
-    "bare-pack": "^1.0.1"
+    "bare-pack": "^2.0.0"
   },
   "peerDependencies": {
     "bare-bundle": "^1.8.0"
@@ -34,7 +34,7 @@
   "devDependencies": {
     "bare-bundle": "*",
     "brittle": "^3.1.1",
-    "localdrive": "^1.12.1",
+    "localdrive": "^2.0.0",
     "prettier": "^3.3.3",
     "prettier-config-standard": "^7.0.0"
   }
