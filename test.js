@@ -87,3 +87,33 @@ test('package.json#assets', async (t) => {
 
   t.alike(bundle, expected)
 })
+
+test('offload', async (t) => {
+  const offloaded = []
+
+  const bundle = await pack(
+    new Localdrive('test/fixtures/offload'),
+    '/foo.js',
+    function writeFile(url, source) {
+      offloaded.push([url.href, source.toString()])
+
+      return new URL('file:///out' + url.pathname)
+    },
+    { offload: true }
+  )
+
+  t.alike(offloaded, [['drive:///asset.txt', 'hello world\n']], 'routed to writeFile')
+
+  const expected = new Bundle().write(
+    '/foo.js',
+    "module.exports = require.asset('./asset.txt')\n",
+    {
+      main: true,
+      imports: {
+        './asset.txt': 'file:///out/asset.txt'
+      }
+    }
+  )
+
+  t.alike(bundle, expected)
+})
