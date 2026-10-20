@@ -33,7 +33,7 @@ test('require.asset, directory', async (t) => {
       main: true,
       imports: {
         '#package': '/package.json',
-        './bar': '/bar'
+        './bar': { asset: '/bar' }
       }
     })
     .write('/package.json', '{\n  "name": "foo"\n}\n', {
@@ -110,10 +110,12 @@ test('offload', async (t) => {
     {
       main: true,
       imports: {
-        './asset.txt': 'file:///out/asset.txt'
+        './asset.txt': { asset: 'file:///out/asset.txt' }
       }
     }
   )
+
+  expected.assets = ['file:///out/asset.txt']
 
   t.alike(bundle, expected)
 })
