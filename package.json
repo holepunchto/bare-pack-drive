@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/holepunchto/bare-pack-drive#readme",
   "dependencies": {
-    "bare-pack": "^2.0.0"
+    "bare-pack": "^3.0.0"
   },
   "peerDependencies": {
     "bare-bundle": "^1.8.0"
