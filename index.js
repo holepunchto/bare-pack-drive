@@ -11,7 +11,14 @@ module.exports = async function (drive, entry = '/index.js', writeFile = null, o
 
   const root = new URL('drive:///')
 
-  const bundle = await pack(new URL(entry, root), opts, readModule, listPrefix, writeFile)
+  const bundle = await pack(
+    new URL(entry, root),
+    opts,
+    readModule,
+    listPrefix,
+    resolveModule,
+    writeFile
+  )
 
   return bundle.unmount(root)
 
@@ -31,5 +38,9 @@ module.exports = async function (drive, entry = '/index.js', writeFile = null, o
     for await (const { key } of drive.list(url.pathname, { recursive: true })) {
       yield new URL(key, url)
     }
+  }
+
+  async function resolveModule(url) {
+    return url
   }
 }
